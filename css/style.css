@@ -1,0 +1,713 @@
+@font-face {
+    font-family: 'rz-regular';
+    src: url('fonts/rz-regular.woff2') format('woff2'),
+         url('fonts/rz-regular.woff') format('woff'),
+         url('fonts/rz-regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Estilo básico da barra de rolagem */
+::-webkit-scrollbar {
+    width: 12px; /* Largura da barra de rolagem */
+    height: 12px; /* Altura da barra de rolagem horizontal */
+}
+
+/* Estilo do trilho (fundo da barra de rolagem) */
+::-webkit-scrollbar-track {
+    background: #ffffff00; /* Cor do trilho */
+}
+
+/* Estilo do polegar (a parte que se move) */
+::-webkit-scrollbar-thumb {
+    background: #2b2b2b; /* Cor do polegar */
+    border-radius: 10px; /* Arredondamento do polegar */
+    border: 3px solid #ffffff; /* Espaço ao redor do polegar */
+}
+
+/* Estilo do polegar ao passar o mouse */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Cor ao passar o mouse */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    color: #000;
+    font-family: "RZ Regular";
+    scrollbar-width: thin; /* Tamanho fino */
+    scrollbar-color: #888 #f0f0f0; /* Polegar e trilho */
+}
+
+.timeline {
+    position: relative;
+    width: 80vw;
+    margin: 0 auto;
+    padding: 5vw 0;
+    background-color: #000;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: center;
+    margin: 5vw 0;
+    position: relative;
+    justify-content: space-between; /* Garante que os itens não se sobreponham */
+    width: 100%; /* Garante que o item ocupe toda a largura disponível */
+}
+
+.timeline-item .dot {
+    width: 1vw;
+    height: 1vw;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.timeline-item .content {
+    position: relative;
+    padding: 2vw;
+    width: 50vw;
+    color: #fff;
+    width: calc(50vw - 4vw); /* Ajusta para que os textos fiquem dentro dos limites */
+    box-sizing: border-box; /* Evita que o padding saia das bordas */
+}
+
+.timeline-item:nth-child(odd) .content {
+    margin-right: 40vw;
+    text-align: right;
+}
+
+.timeline-item:nth-child(even) .content {
+    margin-left: 40vw;
+    text-align: left;
+}
+
+.timeline:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 0.2vw;
+    background: rgb(255, 255, 255);
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.fab {
+    font-size: 30px;
+}
+
+.technologies {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    justify-content: flex-start; /* Alinha os ícones à direita */
+    gap: 10px; /* Espaçamento entre os ícones */
+}
+
+.technologies i {
+    font-size: 36px;
+    margin: 0 5px;
+    color: #333;
+}
+
+.technologies .fa-html5:hover {
+    color: #e34f26; /* Cor oficial do CSS3 */
+  }
+
+.technologies .fa-css3-alt:hover {
+    color: #1572B6; /* Cor oficial do CSS3 */
+  }
+  
+  .technologies .fa-js-square:hover {
+    color: #F7DF1E; /* Cor oficial do JavaScript */
+  }
+  
+  .technologies .fa-python:hover {
+    color: #3776AB; /* Cor oficial do Python */
+  }
+  
+  .technologies .fa-database:hover {
+    color: #00758F; /* Cor do MySQL */
+  }
+  
+  .technologies .fa-react:hover {
+    color: #61DAFB; /* Cor oficial do React */
+  }
+  
+  .technologies .fa-d:hover {
+    color: #092E20; /* Cor oficial do Django */
+  }
+
+/* Header container */
+.custom-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2vw 5vw;
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    background-color: white; /* Substitua pela cor desejada */
+    z-index: 1000;
+    box-shadow: 0 0.2vw 1vw rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.hidden {
+    transform: translateY(-100%);
+}
+
+/* Logo */
+.custom-header .logo {
+    font-size: 2vw;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #000;
+    letter-spacing: 0.2vw;
+}
+
+/* Menu container */
+.custom-header .menu ul {
+    display: flex;
+    gap: 4vw;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Menu links */
+.custom-header .menu ul li a {
+    text-decoration: none;
+    color: #000;
+    font-size: 1vw;
+    font-weight: 300;
+    letter-spacing: 0.1vw;
+    transition: color 0.3s ease-in-out;
+}
+
+/* Hover effect */
+.custom-header .menu ul li a:hover {
+    color: #9e9e9e; /* Altere para a cor desejada */
+}
+
+/* Responsive menu */
+@media (max-width: 768px) {
+    .custom-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2vw;
+    }
+    .custom-header .menu ul {
+        flex-direction: column;
+        gap: 2vw;
+    }
+    .custom-header .menu ul li a {
+        font-size: 1.8vw;
+    }
+}
+
+/* Estilo básico do footer */
+.custom-footer {
+    background-color: #111; /* Cor de fundo bem escura */
+    color: #bbb; /* Texto mais suave */
+    padding: 4vw 6vw; /* Padding responsivo com vw */
+    text-align: center; /* Centraliza o conteúdo */
+    border-top: 1px solid #333; /* Linha sutil para separar do conteúdo */
+}
+
+/* Container do footer */
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Permite empilhar as seções em telas pequenas */
+    gap: 4vw; /* Espaçamento entre as seções */
+    align-items: flex-start;
+}
+
+/* Estilo das seções dentro do footer */
+.footer-section-links,
+.footer-section-pages,
+.footer-section-info {
+    flex: 1;
+    min-width: 150px; /* Garante que as seções não fiquem pequenas demais */
+    position: relative; /* Necessário para o posicionamento sticky */
+}
+
+/* Títulos das seções */
+.footer-section-links h4,
+.footer-section-pages h4,
+.footer-section-info h4 {
+    font-size: 2rem; /* Tamanho maior para os títulos */
+    margin-bottom: 1vw;
+    color: #fff; /* Título em branco */
+    position: sticky;
+    top: 0; /* Fixa o título no topo da seção */
+    background-color: #111; /* Fundo escuro para o título */
+    padding-top: 2vw; /* Distância do topo da seção */
+    z-index: 10; /* Garante que o título fique acima do conteúdo */
+}
+
+/* Linha separadora */
+.separator {
+    width: 50%;
+    height: 1px;
+    margin: 0.5vw auto;
+    background-color: #444; /* Cor da linha */
+}
+
+/* Estilo das listas de links */
+.social-media-links,
+.site-navigation-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.social-media-links li,
+.site-navigation-links li {
+    margin-bottom: 1.5vw; /* Distância entre os itens */
+}
+
+.social-media-links li a,
+.site-navigation-links li a {
+    text-decoration: none;
+    color: #bbb;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.social-media-links li a:hover,
+.site-navigation-links li a:hover {
+    color: #fff; /* Cor ao passar o mouse */
+}
+
+/* Estilo do texto adicional */
+.footer-section-info p {
+    font-size: 1.2rem;
+    color: #777; /* Cor do texto mais suave */
+}
+
+.footer-section-info p a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-section-info p a:hover {
+    text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column; /* Empilha as seções em telas pequenas */
+        align-items: center;
+    }
+
+    .footer-section-links,
+    .footer-section-pages,
+    .footer-section-info {
+        text-align: center;
+        margin-bottom: 3vw;
+    }
+
+    .footer-section-links h4,
+    .footer-section-pages h4,
+    .footer-section-info h4 {
+        font-size: 2rem; /* Ajusta o tamanho dos títulos em telas pequenas */
+    }
+
+    .social-media-links li a,
+    .site-navigation-links li a {
+        font-size: 1.4rem; /* Ajusta o tamanho da fonte dos links */
+    }
+
+    .footer-section-info p {
+        font-size: 1.4rem; /* Ajusta o tamanho do texto */
+    }
+}
+/* Estilo básico para todas as seções */
+.section {
+    padding: 50px 20px;
+}
+
+/* Home */
+.home {
+    background-color: #ffffff;
+    border-bottom: 2px solid #ffffff;
+}
+
+/* About Me */
+.about-me {
+    background-color: #000000;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Projects */
+.projects {
+    background-color: #ffffff;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Contact */
+.form-container {
+    background-color: #000000;
+}
+
+/* Estilo da seção Home */
+.home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #ffffff;
+    padding: 0 20px;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.profile {
+    flex: 1;
+    padding-right: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.intro-text {
+    flex: 2;
+    padding-left: 50px;
+}
+
+.intro-text h1 {
+    font-size: 2.5rem;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+.intro-text p {
+    font-size: 1.2rem;
+    color: #000000;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.btn {
+    text-decoration: none;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #555;
+}
+
+/* Animações de fade-in */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1.5s forwards;
+}
+
+.fade-in:nth-child(1) {
+    animation-delay: 0.5s;
+}
+
+.fade-in:nth-child(2) {
+    animation-delay: 1s;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .profile {
+        padding-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .intro-text {
+        padding-left: 0;
+    }
+}
+
+.project-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 50px 20px;
+  }
+  
+  .project-info h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+  }
+  
+  .project-preview {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .device {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 30px;
+  }
+  
+  .project-image-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  
+  .project-image-container .combined {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+    object-fit: cover;
+  }
+  
+  .project-image-container:hover .combined {
+    transform: scale(1.1); /* Aumenta a imagem ao passar o mouse */
+  }
+  
+  .project-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro transparente */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .project-image-container:hover .project-text {
+    opacity: 1; /* Exibe o texto ao passar o mouse */
+  }
+  
+  .tech-icons-overlay {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .project-image-container:hover .tech-icons-overlay {
+    opacity: 1; /* Exibe os ícones das tecnologias ao passar o mouse */
+  }
+  
+  .tech-icons-overlay i {
+    font-size: 30px; /* Define um tamanho uniforme para todos os ícones */
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Cores específicas para cada tecnologia */
+  .tech-icons-overlay .fa-js-square {
+    color: #f7df1e; /* Amarelo para JavaScript */
+  }
+  
+  .tech-icons-overlay .fa-react {
+    color: #61dafb; /* Azul para React */
+  }
+  
+  .tech-icons-overlay .fa-database {
+    color: #00758F; /* Verde para Banco de Dados */
+  }
+  
+  .tech-icons-overlay .fa-html5 {
+    color: #e34f26; /* Laranja para HTML */
+  }
+  
+  .tech-icons-overlay .fa-css3-alt {
+    color: #1572b6; /* Azul para CSS */
+  }
+  
+  .tech-icons-overlay .fa-d {
+    color: #092E20; /* Rosa para Django */
+  }
+  
+  .project-image-container:hover .tech-icons-overlay i {
+    transform: scale(1.2); /* Aumenta o ícone ao passar o mouse */
+  }
+  
+
+
+
+  .form-container {
+    text-align: center;
+    padding: 5vh 0;
+  }
+  
+  .form-title {
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: white;
+  }
+  
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+    color: white;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    background: none;
+    box-sizing: border-box;
+    font-family: "RZ Regular";
+    color: white;
+  }
+  
+  .contact-form textarea {
+    height: 100px;
+    resize: none;
+    color: white;
+  }
+  
+  .contact-info button {
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: "RZ Regular";
+    width: 200px; /* Define uma largura maior */
+    text-align: center; /* Garante que o texto dentro do botão fique centralizado */
+    margin: 0 auto; /* Centraliza o botão */
+    display: block; /* Necessário para o margin funcionar na centralização */
+  }
+  
+  .contact-form button:hover {
+    background-color: #1d1d1d;
+    color: #fff;
+  }
+  
+  .contact-info {
+    margin-top: -1rem;
+    display: flex; /* Adiciona alinhamento em linha */
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Para responsividade */ 
+    gap: 4rem; 
+  }
+  
+  .contact-info p {
+    font-size: 1em;
+    margin-bottom: 1rem;
+    color: white;
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: 1.5rem; 
+  }
+  
+  .button-submit {
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    align-content: center;
+  }
+  
+  .social-icons a {
+    font-size: 1.5rem;
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .social-icons a:hover {
+    color: #6e6e6e;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .form-title {
+      font-size: 2.5em;
+    }
+  
+    .contact-form {
+      width: 90%;
+    }
+  }
+
+  .contact-form input.invalid,
+.contact-form textarea.invalid {
+  border-color: red;
+}
+
+.contact-form input.invalid:focus,
+.contact-form textarea.invalid:focus {
+  outline-color: red;
+}
