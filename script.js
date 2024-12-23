@@ -144,34 +144,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
     type();
 });
-
- // Função para alternar travamento de rolagem
-        const navLinks = document.querySelectorAll('.menu a');
-        const sections = document.querySelectorAll('section');
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', e => {
-                const targetID = link.getAttribute('href').slice(1);
-                const lockScroll = link.dataset.lock === "true";
-                
-                // Alternar travamento de rolagem
-                if (lockScroll) {
-                    document.body.classList.add('lock-scroll');
-                } else {
-                    document.body.classList.remove('lock-scroll');
-                }
-
-                // Mostrar a seção correspondente
-                sections.forEach(section => {
-                    section.style.display = section.id === targetID ? 'block' : 'none';
-                });
-
-                // Desbloquear a rolagem ao voltar ao "Home"
-                if (targetID === "home") {
-                    document.body.classList.remove('lock-scroll');
-                    sections.forEach(section => {
-                        section.style.display = 'block'; // Mostra todas as seções
-                    });
-                }
-            });
-        });
