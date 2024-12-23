@@ -711,3 +711,20 @@ body {
 .contact-form textarea.invalid:focus {
   outline-color: red;
 }
+
+
+#typewriter {
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid #000;
+  display: inline-block;
+  animation: blink 0.7s steps(1) infinite;
+  min-height: 1.5em; /* Reservar espaço para evitar o "pulo" */
+}
+
+@keyframes blink {
+  50% {
+      border-color: transparent;
+  }
+}
+

@@ -100,3 +100,78 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
   
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const element = document.getElementById("typewriter");
+    const phrases = [
+        "Eduardo Martins.",
+        "Desenvolvedor Full Stack.",
+        "Criando soluções digitais.",
+        "Codificando sonhos.",
+        "Simplificando o complexo.",
+    ]; // Array de frases
+    const typingSpeed = 100; // Velocidade da digitação (ms)
+    const deletingSpeed = 100; // Velocidade da exclusão (ms)
+    const pauseBetween = 1000; // Pausa entre frases (ms)
+
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function type() {
+        const currentPhrase = phrases[phraseIndex];
+        if (!isDeleting) {
+            // Digita a frase atual
+            element.textContent = currentPhrase.substring(0, charIndex + 1);
+            charIndex++;
+            if (charIndex === currentPhrase.length) {
+                // Pausa após completar a frase
+                setTimeout(() => (isDeleting = true), pauseBetween);
+            }
+        } else {
+            // Apaga a frase atual
+            element.textContent = currentPhrase.substring(0, charIndex - 1);
+            charIndex--;
+            if (charIndex === 0) {
+                // Avança para a próxima frase
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length; // Volta ao início se for a última frase
+            }
+        }
+        // Define o tempo para o próximo caractere
+        setTimeout(type, isDeleting ? deletingSpeed : typingSpeed);
+    }
+
+    type();
+});
+
+ // Função para alternar travamento de rolagem
+        const navLinks = document.querySelectorAll('.menu a');
+        const sections = document.querySelectorAll('section');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', e => {
+                const targetID = link.getAttribute('href').slice(1);
+                const lockScroll = link.dataset.lock === "true";
+                
+                // Alternar travamento de rolagem
+                if (lockScroll) {
+                    document.body.classList.add('lock-scroll');
+                } else {
+                    document.body.classList.remove('lock-scroll');
+                }
+
+                // Mostrar a seção correspondente
+                sections.forEach(section => {
+                    section.style.display = section.id === targetID ? 'block' : 'none';
+                });
+
+                // Desbloquear a rolagem ao voltar ao "Home"
+                if (targetID === "home") {
+                    document.body.classList.remove('lock-scroll');
+                    sections.forEach(section => {
+                        section.style.display = 'block'; // Mostra todas as seções
+                    });
+                }
+            });
+        });
